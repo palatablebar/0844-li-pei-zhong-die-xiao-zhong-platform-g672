@@ -18,6 +18,9 @@ MESSAGES = {
     "GATE_BLOCKED": "存在阻断项，不能签发",
     "NOT_APPROVED": "批次尚未签发",
     "BAD_REQUEST": "请求内容不完整",
+    "PERIOD_NOT_FOUND": "抽检周期不存在",
+    "PERIOD_NOT_OPEN": "抽检周期已发布，不能再改动",
+    "PERIOD_EMPTY": "暂无可抽检的已签发批次",
 }
 
 

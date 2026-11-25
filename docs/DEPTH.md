@@ -15,6 +15,8 @@
 | M5 运行对账 | 核对来源行、采信、隔离、重复与计算条目 | `POST /api/stages/reconcile` | `app/reconcile/ledger.py` | `tests/test_reconcile.py` |
 | M6 批次复核 | 带版本号签发或暂缓，拒绝陈旧复核 | `POST /api/runs/{id}/review` | `app/review/service.py` | `tests/test_review.py` |
 | M7 证据交付 | 仅在签发后输出可校验的复核证据 | `GET /api/runs/{id}/evidence` | `app/evidence/render.py` | `tests/test_evidence.py` |
+| M8 抽检选样 | 差异组强制入样，剩余名额最大化支付方覆盖 | `POST /api/sampling/generate` | `app/sampling/policy.py` | `tests/test_sampling_policy.py` |
+| M9 抽检周期 | 周期冻结、中断恢复、重试不新增，保留给付依据 | `POST /api/sampling/publish` | `app/sampling/service.py`、`app/sampling/store.py` | `tests/test_sampling_service.py`、`tests/test_sampling_http.py` |
 
 ## 输入陷阱
 

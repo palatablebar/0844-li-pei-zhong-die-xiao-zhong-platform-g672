@@ -52,6 +52,13 @@ class Store:
             row = db.execute("SELECT * FROM runs WHERE id=?", (run_id,)).fetchone()
         return dict(row) if row else None
 
+    def list_approved(self):
+        with self.connect() as db:
+            rows = db.execute(
+                "SELECT * FROM runs WHERE status='APPROVED' ORDER BY created_at ASC, id ASC"
+            ).fetchall()
+        return [dict(row) for row in rows]
+
     def review(self, run_id, decision, comment, expected_revision):
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")

@@ -27,6 +27,25 @@
       <div class="panel-head"><h2>运行对账</h2></div>
       <div class="ledger" id="ledger-list"></div>
     </article>
+    <article class="panel" id="panel-sampling">
+      <div class="panel-head">
+        <h2>抽检名单</h2>
+        <span class="hint" id="sample-meta">尚未生成</span>
+      </div>
+      <div class="sample-actions">
+        <button id="sample-generate" type="button">生成/续跑抽检</button>
+        <button id="sample-publish" type="button" disabled>发布名单</button>
+        <label>名额 <input id="sample-quota" type="number" min="1" value="5" style="width:5em"></label>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>理赔组</th><th>支付方</th><th>入样原因</th><th>给付差额(分)</th><th>给付依据</th></tr>
+          </thead>
+          <tbody id="sample-body"></tbody>
+        </table>
+      </div>
+    </article>
     <article class="panel" id="panel-review">
       <div class="panel-head"><h2>批次复核</h2><span class="hint" id="revision">rev 0</span></div>
       <div class="review">

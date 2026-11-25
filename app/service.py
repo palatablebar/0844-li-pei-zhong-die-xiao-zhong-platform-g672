@@ -8,6 +8,7 @@ from app.domain.decision import decide_rows
 from app.domain.prepare import prepare_rows
 from app.intake.service import load
 from app.reconcile.ledger import build_ledger
+from app.sampling.groups import collect_group_payments
 
 
 def jsonable(value):
@@ -61,6 +62,7 @@ def pipeline(profile="dirty", path=None, upto="证据交付"):
                          if key in {"label", "verdict", "reason", "metric", "limit", "status", "state", "breakdown"}
                          or key in SPEC["columns"] or key in SPEC["result_columns"]})
     source = {"profile": profile, "filename": Path(intake["path"]).name, "sha256": intake["sha256"]}
+    group_payments = collect_group_payments(prepared, results) if _stage(upto) >= 3 else []
     payload = {
         "project": SPEC["code"] + " " + SPEC["name"],
         "rule": SPEC["rule_short"],
@@ -73,6 +75,7 @@ def pipeline(profile="dirty", path=None, upto="证据交付"):
         "chart": chart,
         "summary": summary,
         "ledger": ledger,
+        "group_payments": group_payments,
         "stages": [{"id": "intake", "name": SPEC["stages"][0]},
                    {"id": "prepare", "name": SPEC["stages"][1]},
                    {"id": "calculate", "name": SPEC["stages"][2]},
